@@ -19,8 +19,10 @@ Or you can install everything globally. Search for step by step guides to instal
 Why do I see so many files and what are their roles? <br />
 Here's an overview of the files. <br />
 
+Feature based detection: <br />
 vehicle_detection_kmeans.py : Vehicle detetcion using k-means clustering on FAST features <br />
 vehicle_detetcion_hclustering.py : Vehicle detetcion using hierarchical clustering on FAST features <br />
+Blob based detection and tracking: <br />
 single_ref_line.py : Vehicle Counting using Single Reference Line <br />
 multiple_reference_lines.py : Vehicle Counting using Multiple Refernce Lines <br />
 region_based.py : Region based Vehicle Counting System, includes a bonus speed estimation module as well! <br />
