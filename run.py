@@ -1,3 +1,6 @@
+# The final run file.
+# This system uses multiple reference line based counting system,
+# integrated with speed estimation and traffic flow estimation.
 import time
 start_time = time.time()
 import uuid
