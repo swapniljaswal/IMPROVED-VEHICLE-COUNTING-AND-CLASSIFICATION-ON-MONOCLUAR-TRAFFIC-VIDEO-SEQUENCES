@@ -15,7 +15,7 @@ source activate cv
 
 Or you can install everything globally. Search for step by step guides to install OpenCV. The dependencies will be installed on the way.
 
-## Files on the box
+## Files in the box
 Why do I see so many files and what are their roles?
 Here's an overview of the files.
 
