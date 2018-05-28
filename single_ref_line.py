@@ -31,10 +31,10 @@ REF_Y = 200
 DIV_X = 300
 
 #Capture Video
-cap = cv.VideoCapture('/Users/Swapnil/Desktop/My Desktop/Projects/Vehicle Counting/Input/Towards Admin.mp4')
+cap = cv.VideoCapture('/Input/Towards Admin.mp4')
 
 #Write Video
-out = cv.VideoWriter('/Users/Swapnil/Desktop/My Desktop/Projects/Vehicle Counting/Results/video.avi',cv.VideoWriter_fourcc('M','J','P','G'), 10, (640, 480))
+out = cv.VideoWriter('/Results/video.avi',cv.VideoWriter_fourcc('M','J','P','G'), 10, (640, 480))
 
 #Backgroud Subtractor
 fgbg = cv.bgsegm.createBackgroundSubtractorMOG()
@@ -207,7 +207,7 @@ while (1):
         temp_id = tracked_blobs.index(blob)
         
         cv.circle(frame, blob['trail'][0], 2, (0,0,255), -1)
-        
+    #Check if center of the blob overlaps with reference line, reference line is 5px wide  
         if blob['trail'][0][1] < REF_Y and blob['trail'][0][1] > REF_Y-5:
             if not blob['counted']:
                 blob['counted'] = True
@@ -227,7 +227,7 @@ while (1):
                         vehicle_count_right_M += 1
                     else:
                         vehicle_count_right_H += 1
-    
+    #Update information about vehicle counts on screen
     cv.putText(frame, str(vehicle_count_left_L), (30,20), font, 0.8, (255,255,255), 2)
     cv.putText(frame, str(vehicle_count_left_M), (130,20), font, 0.8, (255,255,255),2)
     cv.putText(frame, str(vehicle_count_left_H), (230,20), font, 0.8, (255,255,255),2)
