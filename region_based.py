@@ -229,6 +229,7 @@ while (1):
     for blob in tracked_blobs:
         temp_id = tracked_blobs.index(blob)
         
+        #Check entry and exit into the region
         if blob['trail'][0][1] > REF_Y-REGION_DEPTH and blob['trail'][0][1] <= REF_Y :
             if not blob['entry']:
                 blob['entry_time'] = time.time()
@@ -278,7 +279,7 @@ while (1):
     
                 
             
-
+    #Update information on screen
 
     cv.putText(frame, str(vehicle_count_left_L), (30,20), font, 0.8, (255,255,255), 2)
     cv.putText(frame, str(vehicle_count_left_M), (130,20), font, 0.8, (255,255,255),2)
