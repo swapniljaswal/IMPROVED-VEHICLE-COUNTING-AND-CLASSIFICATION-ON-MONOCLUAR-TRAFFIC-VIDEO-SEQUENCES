@@ -81,15 +81,15 @@ while (1):
     frame = cv.resize(frame, (640,480))
     frame_count+=1
     
-    #cv.line(frame, (0,REF_Y), (REF_X, REF_Y), (0,255,0), 2)
-    #font = cv.FONT_HERSHEY_SIMPLEX
-    #cv.rectangle(frame, (0, 0), (640, 30), (0,0,0), -1)
-    #cv.putText(frame, 'L: ', (1,20), font, 0.8, (255,255,0), 2)
-    #cv.putText(frame, 'M: ', (100,20), font, 0.8, (0,255,255),2)
-    #cv.putText(frame, 'H: ', (200,20), font, 0.8, (255,0,255),2)
-    #cv.putText(frame, 'L: ', (1+DIV_X+50,20), font, 0.8, (255,255,0), 2)
-    #cv.putText(frame, 'M: ', (100+DIV_X+50,20), font, 0.8, (0,255,255),2)
-    #cv.putText(frame, 'H: ', (200+DIV_X+50,20), font, 0.8, (255,0,255),2)
+    cv.line(frame, (0,REF_Y), (REF_X, REF_Y), (0,255,0), 2)
+    font = cv.FONT_HERSHEY_SIMPLEX
+    cv.rectangle(frame, (0, 0), (640, 30), (0,0,0), -1)
+    cv.putText(frame, 'L: ', (1,20), font, 0.8, (255,255,0), 2)
+    cv.putText(frame, 'M: ', (100,20), font, 0.8, (0,255,255),2)
+    cv.putText(frame, 'H: ', (200,20), font, 0.8, (255,0,255),2)
+    cv.putText(frame, 'L: ', (1+DIV_X+50,20), font, 0.8, (255,255,0), 2)
+    cv.putText(frame, 'M: ', (100+DIV_X+50,20), font, 0.8, (0,255,255),2)
+    cv.putText(frame, 'H: ', (200+DIV_X+50,20), font, 0.8, (255,0,255),2)
 
     frame_gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
 
@@ -129,9 +129,9 @@ while (1):
                 blob_label = 'Heavy'
                 label_width = 30
                 color_bb = (255,0,255)
-            #cv.rectangle(frame, (x, y), (x + w, y + h), color_bb, LINE_THICKNESS)
-            #cv.rectangle(frame, (x, y-10), (x+label_width,y ), color_bb, -1)
-            #cv.putText(frame, blob_label, (x+2,y), font, 0.3,(255,255,255))
+            cv.rectangle(frame, (x, y), (x + w, y + h), color_bb, LINE_THICKNESS)
+            cv.rectangle(frame, (x, y-10), (x+label_width,y ), color_bb, -1)
+            cv.putText(frame, blob_label, (x+2,y), font, 0.3,(255,255,255))
 
             
                 
@@ -206,14 +206,14 @@ while (1):
     for blob in tracked_blobs:
         temp_id = tracked_blobs.index(blob)
         
-        #cv.circle(frame, blob['trail'][0], 2, (0,0,255), -1)
+        cv.circle(frame, blob['trail'][0], 2, (0,0,255), -1)
         
-        
+        #Check if center of the blob overlaps with reference line, reference line is 5px wide
         if blob['trail'][0][1] < REF_Y-30 and blob['trail'][0][1] > REF_Y-35:
             if not blob['counted']:
                 blob['counted'] = True
                 if blob['trail'][0][0] < DIV_X:
-                    #cv.line(frame, (0,REF_Y-70), (DIV_X, REF_Y-70), (255,0,0), 2)
+                    cv.line(frame, (0,REF_Y-70), (DIV_X, REF_Y-70), (255,0,0), 2)
                     if blob['label'] == 'Light':
                         vehicle_count_left_L += 1
                     elif blob['label'] == 'Medium':
@@ -221,7 +221,7 @@ while (1):
                     else:
                         vehicle_count_left_H += 1
                 else:
-                    #cv.line(frame, (DIV_X,REF_Y-70), (640, REF_Y-70), (255,0,0), 2)
+                    cv.line(frame, (DIV_X,REF_Y-70), (640, REF_Y-70), (255,0,0), 2)
                     if blob['label'] == 'Light':
                         vehicle_count_right_L += 1
                     elif blob['label'] == 'Medium':
@@ -233,7 +233,7 @@ while (1):
             if not blob['counted']:
                 blob['counted'] = True
                 if blob['trail'][0][0] < DIV_X:
-                    #cv.line(frame, (0,REF_Y), (DIV_X, REF_Y), (255,0,0), 2)
+                    cv.line(frame, (0,REF_Y), (DIV_X, REF_Y), (255,0,0), 2)
                     if blob['label'] == 'Medium':
                         vehicle_count_left_M += 1
                     elif blob['label'] == 'Light':
@@ -241,7 +241,7 @@ while (1):
                     else:
                         vehicle_count_left_H += 1
                 else:
-                    #cv.line(frame, (DIV_X,REF_Y), (640, REF_Y), (255,0,0), 2)
+                    cv.line(frame, (DIV_X,REF_Y), (640, REF_Y), (255,0,0), 2)
                     if blob['label'] == 'Light':
                         vehicle_count_right_L += 1
                     elif blob['label'] == 'Medium':
@@ -251,17 +251,18 @@ while (1):
         
         #if blob['trail'][0][1] < REF_Y and blob['trail'][0][1] > REF_Y-5:
     
-    #cv.putText(frame, str(vehicle_count_left_L), (30,20), font, 0.8, (255,255,255), 2)
-    #cv.putText(frame, str(vehicle_count_left_M), (130,20), font, 0.8, (255,255,255),2)
-    #cv.putText(frame, str(vehicle_count_left_H), (230,20), font, 0.8, (255,255,255),2)
-    #cv.putText(frame, str(vehicle_count_right_L), (DIV_X+80,20), font, 0.8, (255,255,255), 2)
-    #cv.putText(frame, str(vehicle_count_right_M), (DIV_X+180,20), font, 0.8, (255,255,255),2)
-    #cv.putText(frame, str(vehicle_count_right_H), (DIV_X+280,20), font, 0.8, (255,255,255),2)   
+    #Update information on screen
+    cv.putText(frame, str(vehicle_count_left_L), (30,20), font, 0.8, (255,255,255), 2)
+    cv.putText(frame, str(vehicle_count_left_M), (130,20), font, 0.8, (255,255,255),2)
+    cv.putText(frame, str(vehicle_count_left_H), (230,20), font, 0.8, (255,255,255),2)
+    cv.putText(frame, str(vehicle_count_right_L), (DIV_X+80,20), font, 0.8, (255,255,255), 2)
+    cv.putText(frame, str(vehicle_count_right_M), (DIV_X+180,20), font, 0.8, (255,255,255),2)
+    cv.putText(frame, str(vehicle_count_right_H), (DIV_X+280,20), font, 0.8, (255,255,255),2)   
 
 
-    #cv.imshow('Detection', frame)
+    cv.imshow('Detection', frame)
     #cv.imshow('Blob', blob)
-    #out.write(frame)
+    out.write(frame)
 
     k = cv.waitKey(30) & 0xFF
     if k == 27:
@@ -271,6 +272,6 @@ print(vehicle_count_left_L+vehicle_count_left_M+vehicle_count_left_H)
 print('Right\n')
 print(vehicle_count_right_L+vehicle_count_right_M+vehicle_count_right_H)
 cap.release()
-#out.release()
+out.release()
 extecution_time = time.time() - start_time
 print('exectution time ', extecution_time)
