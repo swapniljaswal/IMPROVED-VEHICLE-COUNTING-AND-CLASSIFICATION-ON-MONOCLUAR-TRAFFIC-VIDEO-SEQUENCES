@@ -31,7 +31,7 @@ All the files have the module for vehicle classfification and video writing.
 
 ## Let's run this thing
 
-Activate your environment. Change the directory to the project Folder. Run the file using python <br />
+Activate your environment. Change the directory to the project Folder. Create an Input and Results folder. Place the input video in the Input folder. Run the file using python <br />
 Example: <br />
 python run.py <br />
 python single_ref_line.py <br />
