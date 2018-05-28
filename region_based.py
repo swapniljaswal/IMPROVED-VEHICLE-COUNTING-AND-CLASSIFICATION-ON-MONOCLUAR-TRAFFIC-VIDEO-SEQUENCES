@@ -37,10 +37,10 @@ pts = pts.reshape((-1,1,2))
 SPEED_FACTOR = 3
 
 #Capture Video
-cap = cv.VideoCapture('/Users/Swapnil/Desktop/My Desktop/Projects/Vehicle Counting/Input/Towards Admin.mp4')
+cap = cv.VideoCapture('/Input/Towards Admin.mp4')
 
 #Write Video
-out = cv.VideoWriter('/Users/Swapnil/Desktop/My Desktop/Projects/Vehicle Counting/Results/video.avi',cv.VideoWriter_fourcc('M','J','P','G'), 10, (640, 480))
+out = cv.VideoWriter('/Results/video.avi',cv.VideoWriter_fourcc('M','J','P','G'), 10, (640, 480))
 
 #Backgroud Subtractor
 fgbg = cv.bgsegm.createBackgroundSubtractorMOG()
